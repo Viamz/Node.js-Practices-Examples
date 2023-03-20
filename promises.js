@@ -1,35 +1,48 @@
-function h(name) {
+function hello(name) {
     return new Promise(function (resolve, reject) {
         setTimeout( function() {
             console.log('Hi, ' + name)
-            //resolve(name);
-            reject('CRITICAL ERROR *.*');
-        }, 2000); 
+            resolve(name);
+            reject('Error');
+        }, 1000); 
     });
    
 }
 
-function bye(nombre) {
+function interact(name) {
     return new Promise ((resolve, reject) => {
         setTimeout(function () {
-            console.log('Bye, ', nombre);
+            console.log('How are you? ', name);
             resolve();
         }, 1000);
     })
    
 }
 
-console.log('Procesing...');
-h('Nann', function j () {
+function bye(name) {
+    return new Promise ((resolve, reject) => {
+        setTimeout(function () {
+            console.log('Bye, ', name);
+            resolve();
+        }, 1000);
+    })
+   
+}
+
+console.log('Procesing request ...');
+
+hello('Nann', function j () {
     bye('Non', function() {
         console.log('Finishing... ');
     });
 });
 
-//----Ejecucion
+//----Ejecution
+
 console.log('Starting...');
-h('Viamz')
+hello('Anybody')
     .then(bye)
+    .then(interact)
     .then((name) => {
         console.log('Done');
     })
